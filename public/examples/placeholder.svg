@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E879F9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#grad1)"/>
+
+  <!-- Plushie icon in center -->
+  <g transform="translate(156, 106)">
+    <!-- Scale up the plushie from the logo -->
+    <g transform="scale(2)">
+      <!-- Left ear -->
+      <circle cx="30" cy="25" r="15" fill="#FFFFFF" opacity="0.9"/>
+      <!-- Right ear -->
+      <circle cx="70" cy="25" r="15" fill="#FFFFFF" opacity="0.9"/>
+      <!-- Head -->
+      <circle cx="50" cy="45" r="25" fill="#FFFFFF" opacity="0.9"/>
+      <!-- Body -->
+      <ellipse cx="50" cy="75" rx="20" ry="18" fill="#FFFFFF" opacity="0.9"/>
+      <!-- Left arm -->
+      <ellipse cx="30" cy="70" rx="8" ry="15" fill="#FFFFFF" opacity="0.9" transform="rotate(-20 30 70)"/>
+      <!-- Right arm -->
+      <ellipse cx="70" cy="70" rx="8" ry="15" fill="#FFFFFF" opacity="0.9" transform="rotate(20 70 70)"/>
+      <!-- Left eye -->
+      <circle cx="42" cy="42" r="3" fill="#D946EF"/>
+      <!-- Right eye -->
+      <circle cx="58" cy="42" r="3" fill="#D946EF"/>
+      <!-- Nose -->
+      <ellipse cx="50" cy="52" rx="5" ry="4" fill="#D946EF" opacity="0.8"/>
+      <!-- Heart -->
+      <path d="M 50 72 L 54 68 Q 56 66 56 69 Q 56 71 54 73 L 50 77 L 46 73 Q 44 71 44 69 Q 44 66 46 68 Z" fill="#D946EF" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- Placeholder text -->
+  <text x="256" y="440" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle" opacity="0.8">
+    Placeholder Image
+  </text>
+</svg>

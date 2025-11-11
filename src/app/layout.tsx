@@ -16,9 +16,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agentic Coding Boilerplate",
+  title: "Plushify - Transform Photos into Adorable Plushies",
   description:
-    "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling - perfect for building AI-powered applications and autonomous agents by Leon van Zyl",
+    "Turn any photo into an adorable AI-generated plushie design. Fast, easy, and fun! Create custom plushies of family, friends, pets, and more with our advanced AI technology.",
+  keywords: ["plushie generator", "AI plushie", "photo to plushie", "custom plushie", "AI art", "plushie maker"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/logo.svg",
+  },
+  openGraph: {
+    title: "Plushify - Transform Photos into Adorable Plushies",
+    description: "Turn any photo into an adorable AI-generated plushie design instantly!",
+    type: "website",
+    images: [{ url: "/logo.svg", width: 100, height: 100, alt: "Plushify Logo" }],
+  },
 };
 
 export default function RootLayout({

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple plushie icon for favicon -->
+  <rect width="100" height="100" rx="20" fill="#F5F3FF"/>
+  <!-- Left ear -->
+  <circle cx="30" cy="30" r="12" fill="#D946EF" />
+  <!-- Right ear -->
+  <circle cx="70" cy="30" r="12" fill="#D946EF" />
+  <!-- Head -->
+  <circle cx="50" cy="50" r="22" fill="#D946EF" />
+  <!-- Body -->
+  <ellipse cx="50" cy="75" rx="18" ry="16" fill="#D946EF" />
+  <!-- Left eye -->
+  <circle cx="43" cy="47" r="2.5" fill="#FFFFFF" />
+  <!-- Right eye -->
+  <circle cx="57" cy="47" r="2.5" fill="#FFFFFF" />
+  <!-- Nose -->
+  <ellipse cx="50" cy="55" rx="4" ry="3" fill="#FFFFFF" opacity="0.8" />
+  <!-- Heart -->
+  <path d="M 50 72 L 53 69 Q 55 67 55 70 Q 55 72 53 74 L 50 77 L 47 74 Q 45 72 45 70 Q 45 67 47 69 Z" fill="#FFFFFF" opacity="0.5" />
+</svg>

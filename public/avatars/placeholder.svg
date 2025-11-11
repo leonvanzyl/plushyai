@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular gradient background -->
+  <defs>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0ABFC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C084FC;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circle background -->
+  <circle cx="100" cy="100" r="100" fill="url(#avatarGrad)"/>
+
+  <!-- Simple user icon -->
+  <circle cx="100" cy="75" r="30" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M 50 150 Q 50 110 100 110 Q 150 110 150 150 L 150 180 Q 150 200 100 200 Q 50 200 50 180 Z" fill="#FFFFFF" opacity="0.9"/>
+</svg>

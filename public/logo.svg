@@ -1,0 +1,25 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cute plushie teddy bear design -->
+  <!-- Left ear -->
+  <circle cx="30" cy="25" r="15" fill="#D946EF" />
+  <!-- Right ear -->
+  <circle cx="70" cy="25" r="15" fill="#D946EF" />
+  <!-- Head -->
+  <circle cx="50" cy="45" r="25" fill="#D946EF" />
+  <!-- Body -->
+  <ellipse cx="50" cy="75" rx="20" ry="18" fill="#D946EF" />
+  <!-- Left arm -->
+  <ellipse cx="30" cy="70" rx="8" ry="15" fill="#D946EF" transform="rotate(-20 30 70)" />
+  <!-- Right arm -->
+  <ellipse cx="70" cy="70" rx="8" ry="15" fill="#D946EF" transform="rotate(20 70 70)" />
+  <!-- Left eye -->
+  <circle cx="42" cy="42" r="3" fill="#FFFFFF" />
+  <!-- Right eye -->
+  <circle cx="58" cy="42" r="3" fill="#FFFFFF" />
+  <!-- Nose/snout -->
+  <ellipse cx="50" cy="52" rx="5" ry="4" fill="#FFFFFF" opacity="0.8" />
+  <!-- Smile -->
+  <path d="M 45 55 Q 50 58 55 55" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6" />
+  <!-- Heart on chest -->
+  <path d="M 50 72 L 54 68 Q 56 66 56 69 Q 56 71 54 73 L 50 77 L 46 73 Q 44 71 44 69 Q 44 66 46 68 Z" fill="#FFFFFF" opacity="0.4" />
+</svg>

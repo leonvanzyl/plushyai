@@ -3,19 +3,43 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+/**
+ * Admin page with proper authorization checks and audit logging.
+ *
+ * Security Features:
+ * - Server-side authentication and authorization checks
+ * - Type-safe role validation
+ * - Audit logging for unauthorized access attempts
+ * - Audit logging for successful admin access (production only)
+ *
+ * Only users with platformRole === "admin" can access this page.
+ */
 export default async function AdminPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  // Redirect to sign-in if not authenticated
+  // First check: User must be authenticated
   if (!session) {
     redirect("/sign-in");
   }
 
-  // Check if user has admin role
-  if (session.user.platformRole !== "admin") {
+  // Second check: User must have admin role
+  // Type-safe check with proper casting
+  const user = session.user as typeof session.user & { platformRole?: string };
+  const isAdmin = user.platformRole === "admin";
+
+  if (!isAdmin) {
+    // Log unauthorized access attempt (in production, send to monitoring service)
+    console.warn(`[SECURITY] Unauthorized admin access attempt by user ${user.id} (${user.email})`);
+
+    // Redirect non-admin users to dashboard
     redirect("/dashboard");
+  }
+
+  // Optional: Log successful admin access for auditing
+  if (process.env.NODE_ENV === "production") {
+    console.log(`[AUDIT] Admin access granted to user ${user.id} (${user.email})`);
   }
 
   return (

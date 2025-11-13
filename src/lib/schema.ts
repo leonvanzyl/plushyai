@@ -29,9 +29,11 @@ export const session = pgTable("session", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 }, (table) => ({
-  // Add indexes for better query performance
+  // Indexes for better query performance
   userIdIdx: index("session_user_id_idx").on(table.userId),
   expiresAtIdx: index("session_expires_at_idx").on(table.expiresAt),
+  // Composite index for token + expiry checks (common query pattern)
+  tokenExpiresIdx: index("session_token_expires_idx").on(table.token, table.expiresAt),
 }));
 
 export const account = pgTable("account", {
@@ -68,4 +70,10 @@ export const verification = pgTable("verification", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
-});
+}, (table) => ({
+  // Indexes for better query performance during email verification flows
+  // Index for looking up verification tokens by identifier (email)
+  identifierIdx: index("verification_identifier_idx").on(table.identifier),
+  // Index for cleaning up expired tokens
+  expiresAtIdx: index("verification_expires_at_idx").on(table.expiresAt),
+}));

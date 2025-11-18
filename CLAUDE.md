@@ -42,7 +42,9 @@ Run two terminals concurrently:
 1. Terminal 1: `pnpm dev` (Next.js dev server on http://localhost:3000)
 2. Terminal 2: `pnpm dev:inngest` (Inngest dev server on http://localhost:8288)
 
-**Critical Development Rule:** Always run `pnpm lint` and `pnpm typecheck` after completing changes. This is enforced by project rules.
+**Critical Development Rules:**
+1. **ALWAYS** run `pnpm lint` and `pnpm typecheck` after completing changes
+2. **NEVER** start the dev server yourself - if terminal output is needed, ask the user to provide it
 
 ## Architecture
 

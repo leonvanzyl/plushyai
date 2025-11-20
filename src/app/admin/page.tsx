@@ -81,15 +81,31 @@ export default async function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Admin Features</CardTitle>
-              <CardDescription>Coming soon</CardDescription>
+              <CardDescription>Manage platform settings and configuration</CardDescription>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• User management</li>
-                <li>• System analytics</li>
-                <li>• Configuration settings</li>
-                <li>• Content moderation</li>
-              </ul>
+              <div className="space-y-3">
+                <a
+                  href="/admin/products"
+                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <div>
+                    <p className="font-medium">Product Management</p>
+                    <p className="text-sm text-muted-foreground">
+                      Manage credit packages and pricing
+                    </p>
+                  </div>
+                  <span className="text-muted-foreground">→</span>
+                </a>
+                <div className="p-3 rounded-lg opacity-50 cursor-not-allowed">
+                  <p className="font-medium text-muted-foreground">User Management</p>
+                  <p className="text-sm text-muted-foreground">Coming soon</p>
+                </div>
+                <div className="p-3 rounded-lg opacity-50 cursor-not-allowed">
+                  <p className="font-medium text-muted-foreground">System Analytics</p>
+                  <p className="text-sm text-muted-foreground">Coming soon</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

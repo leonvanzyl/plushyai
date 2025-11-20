@@ -138,3 +138,24 @@ export const creditTransactions = pgTable("credit_transactions", {
   // Composite index for user + created_at (most common query pattern)
   userCreatedIdx: index("credit_transactions_user_created_idx").on(table.userId, table.createdAt),
 }));
+
+export const products = pgTable("products", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  slug: text("slug").notNull().unique(),
+  polarProductId: text("polar_product_id").notNull().unique(),
+  name: text("name").notNull(),
+  credits: integer("credits").notNull(),
+  priceUsd: integer("price_usd").notNull(), // Price in cents
+  displayOrder: integer("display_order").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+}, (table) => ({
+  // Index for active products lookup
+  isActiveIdx: index("products_is_active_idx").on(table.isActive),
+  // Index for sorting by display order
+  displayOrderIdx: index("products_display_order_idx").on(table.displayOrder),
+}));

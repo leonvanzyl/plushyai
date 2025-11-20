@@ -16,7 +16,7 @@ interface PricingCardProps {
   features: string[];
   isPopular?: boolean;
   className?: string;
-  slug: string;
+  productId: string; // Polar product ID
 }
 
 export function PricingCard({
@@ -26,14 +26,14 @@ export function PricingCard({
   features,
   isPopular = false,
   className,
-  slug,
+  productId,
 }: PricingCardProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCheckout = async () => {
     try {
       setIsLoading(true);
-      await authClient.checkout({ slug });
+      await authClient.checkout({ products: productId });
     } catch (error) {
       console.error("Checkout error:", error);
       toast.error("Failed to start checkout. Please try again.");

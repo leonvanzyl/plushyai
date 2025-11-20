@@ -71,6 +71,13 @@
       "when": 1763622475645,
       "tag": "0009_cloudy_exiles",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1763625066774,
+      "tag": "0010_heavy_george_stacy",
+      "breakpoints": true
     }
   ]
 }

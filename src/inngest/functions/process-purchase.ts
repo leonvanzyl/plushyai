@@ -68,7 +68,7 @@ export const processPurchase = inngest.createFunction(
           "Product ID is missing from order. Cannot process purchase without product information."
         );
       }
-      const prod = getProductById(productId);
+      const prod = await getProductById(productId);
       if (!prod) {
         throw new Error(
           `Product ID ${productId} not found in configuration. Cannot process purchase.`

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { PricingCard } from "@/components/pricing/pricing-card";
-import { mockPricingTiers } from "@/lib/mock-data";
+import { getAllProducts } from "@/lib/polar-config";
 import {
   Check,
   X,
@@ -22,7 +20,36 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-export default function PricingPage() {
+// Feature mapping for each product tier (display purposes only)
+const TIER_FEATURES: Record<string, string[]> = {
+  basic: [
+    "30 plushie generations",
+    "High-quality output",
+    "Download in PNG format",
+    "Email support",
+    "Credits never expire",
+  ],
+  pro: [
+    "100 plushie generations",
+    "High-quality output",
+    "Download in PNG format",
+    "Priority email support",
+    "Credits never expire",
+    "Early access to new features",
+  ],
+  premium: [
+    "200 plushie generations",
+    "Highest quality output",
+    "Download in PNG & SVG",
+    "Priority support 24/7",
+    "Credits never expire",
+    "Early access to new features",
+    "Commercial usage rights",
+  ],
+};
+
+export default async function PricingPage() {
+  const products = await getAllProducts();
   return (
     <main className="flex-1 max-w-7xl mx-auto">
       {/* Page Hero */}
@@ -45,21 +72,19 @@ export default function PricingPage() {
       {/* Pricing Cards Section */}
       <section className="container mx-auto px-4 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {mockPricingTiers.map((tier) => {
-            // Extract slug from tier ID (e.g., "tier_basic" -> "basic")
-            // Map "elite" to "premium" to match Polar product configuration
-            const baseSlug = tier.id.replace("tier_", "");
-            const slug = baseSlug === "elite" ? "premium" : baseSlug;
+          {products.map((product) => {
+            const features = TIER_FEATURES[product.slug] || [];
+            const isPopular = product.slug === "pro"; // Pro is marked as most popular
 
             return (
               <PricingCard
-                key={tier.id}
-                name={tier.name}
-                price={tier.price}
-                credits={tier.credits}
-                features={tier.features}
-                isPopular={tier.isPopular}
-                slug={slug}
+                key={product.id}
+                name={product.name}
+                price={product.price}
+                credits={product.credits}
+                features={features}
+                isPopular={isPopular}
+                productId={product.id}
               />
             );
           })}

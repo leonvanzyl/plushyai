@@ -2,11 +2,15 @@
  * Polar Product Configuration
  *
  * Centralized configuration for credit packages offered via Polar.
- * Product IDs correspond to products created in Polar Sandbox environment.
+ * Product data is stored in the database and managed via admin interface.
  */
 
+import { db } from "@/lib/db";
+import { products } from "@/lib/schema";
+import { eq, asc } from "drizzle-orm";
+
 export interface PolarProduct {
-  id: string;
+  id: string; // Polar product ID
   slug: string;
   name: string;
   credits: number;
@@ -14,40 +18,47 @@ export interface PolarProduct {
 }
 
 /**
- * Available credit packages for purchase.
- * Product IDs are from Polar Sandbox environment.
+ * Get all active products from database.
+ * @returns Array of active products sorted by display order
  */
-export const POLAR_PRODUCTS: PolarProduct[] = [
-  {
-    id: "94bc2529-7b95-4a04-a1a5-42ba88de67bc",
-    slug: "basic",
-    name: "Basic Package",
-    credits: 30,
-    price: 9,
-  },
-  {
-    id: "085a268c-d0c7-4f11-9e84-a49ecee7eda5",
-    slug: "pro",
-    name: "Pro Package",
-    credits: 100,
-    price: 19,
-  },
-  {
-    id: "04035724-fade-4b6c-b2cb-cf53b7ad4855",
-    slug: "premium",
-    name: "Premium Package",
-    credits: 200,
-    price: 29,
-  },
-];
+export async function getAllProducts(): Promise<PolarProduct[]> {
+  const dbProducts = await db
+    .select()
+    .from(products)
+    .where(eq(products.isActive, true))
+    .orderBy(asc(products.displayOrder));
+
+  return dbProducts.map((p) => ({
+    id: p.polarProductId,
+    slug: p.slug,
+    name: p.name,
+    credits: p.credits,
+    price: p.priceUsd / 100, // Convert cents to dollars
+  }));
+}
 
 /**
  * Get product configuration by slug.
  * @param slug - Product slug (e.g., "basic", "pro", "premium")
  * @returns Product configuration or undefined if not found
  */
-export function getProductBySlug(slug: string): PolarProduct | undefined {
-  return POLAR_PRODUCTS.find((product) => product.slug === slug);
+export async function getProductBySlug(slug: string): Promise<PolarProduct | undefined> {
+  const result = await db
+    .select()
+    .from(products)
+    .where(eq(products.slug, slug))
+    .limit(1);
+
+  if (result.length === 0) return undefined;
+
+  const p = result[0];
+  return {
+    id: p.polarProductId,
+    slug: p.slug,
+    name: p.name,
+    credits: p.credits,
+    price: p.priceUsd / 100, // Convert cents to dollars
+  };
 }
 
 /**
@@ -55,6 +66,21 @@ export function getProductBySlug(slug: string): PolarProduct | undefined {
  * @param id - Polar product ID (UUID)
  * @returns Product configuration or undefined if not found
  */
-export function getProductById(id: string): PolarProduct | undefined {
-  return POLAR_PRODUCTS.find((product) => product.id === id);
+export async function getProductById(id: string): Promise<PolarProduct | undefined> {
+  const result = await db
+    .select()
+    .from(products)
+    .where(eq(products.polarProductId, id))
+    .limit(1);
+
+  if (result.length === 0) return undefined;
+
+  const p = result[0];
+  return {
+    id: p.polarProductId,
+    slug: p.slug,
+    name: p.name,
+    credits: p.credits,
+    price: p.priceUsd / 100, // Convert cents to dollars
+  };
 }

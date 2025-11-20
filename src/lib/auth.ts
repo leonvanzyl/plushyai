@@ -4,7 +4,6 @@ import { nextCookies } from "better-auth/next-js"
 import { polar, checkout, portal, webhooks } from "@polar-sh/better-auth"
 import { Polar } from "@polar-sh/sdk"
 import { db } from "./db"
-import { POLAR_PRODUCTS } from "./polar-config"
 import { inngest } from "@/inngest/client"
 import { user } from "./schema"
 import { eq } from "drizzle-orm"
@@ -169,10 +168,6 @@ export const auth = betterAuth({
       createCustomerOnSignUp: true,
       use: [
         checkout({
-          products: POLAR_PRODUCTS.map((product) => ({
-            productId: product.id,
-            slug: product.slug,
-          })),
           successUrl: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/success`,
           authenticatedUsersOnly: true,
         }),
